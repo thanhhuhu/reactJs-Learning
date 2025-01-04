@@ -1,0 +1,12 @@
+react lifecycle 
+Mounting :
+chạy vào hàm tạo-> hàm render (chèn code html vào cây dom để chạy ) -> hàm did mount
+Thay đổi props hoặc state sẽ chạy vào hàm did update 
+Sử dụng did update để check điều kiện 
+Có các biến prevProps để so sánh quá khứ và hiện tại để kiểm tra hiệu năng của web, tối ưu 
+keyword this chỉ tồn tại bên trong class, còn trong một arrow function thì sẽ lỗi 
+
+Đối với React, một component, có sử dụng State để kiểm soát data, thì gọi là Stateful
+
+Còn với component, không sử dụng State, chỉ sử dụng props để hiển thị dữ liệu, thì được
+gọi là Stateless
