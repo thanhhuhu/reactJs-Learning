@@ -77,7 +77,7 @@ class App extends React.Component {
 // function App() {
 //     return (
 //         <div className="App">
-//           <header className="App-header">
+//           <Header className="App-Header">
 //             <img src={logo} className="App-logo" alt="logo" />
 //             <p>
 //               Edit <code>src/App.js</code> and save to reload.
@@ -90,7 +90,7 @@ class App extends React.Component {
 //             >
 //               Learn React
 //             </a>
-//           </header>
+//           </Header>
 //         </div>
 //     );
 // }
