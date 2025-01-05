@@ -36,3 +36,17 @@
 //    transform: rotate(360deg);
 //  }
 //}
+.app-container {
+  .header-container{
+    .navbar-bar{
+      .nav-link{
+        &.active{
+          color:red
+        }
+      }
+    }
+    //.navbar-bar .nav-link.active{
+    //  color: red !important;
+    //}
+  }
+}
