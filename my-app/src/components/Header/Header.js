@@ -25,7 +25,7 @@ const Header= () => {
                     </Nav>
                     <Nav>
                         <NavDropdown title="Settings" id="basic-nav-dropdown">
-                        <NavDropdown.Item >Log in</NavDropdown.Item>
+                        <NavDropdown.Item >Log in </NavDropdown.Item>
                         <NavDropdown.Item >Log out</NavDropdown.Item>
                             <NavDropdown.Item >Profile</NavDropdown.Item>
                     </NavDropdown>
