@@ -36,12 +36,40 @@
 //    transform: rotate(360deg);
 //  }
 //}
+@media (min-width: 1200px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1300px !important;
+  }
+}
 .app-container {
   .header-container{
-    .navbar-bar{
+    .btn-login {
+      border-radius: 5px;
+      margin-right: 15px;
+      padding: 0 15px;
+      border: 1px solid black;
+      &:hover{
+        color: red;
+      }
+    }
+    .btn-signup {
+      border-radius: 5px;
+      padding: 0 15px;
+      border: 1px solid black;
+      background-color: black;
+      color: white;
+      &:hover{
+        background-color: purple;
+      }
+    }
+
+    .navbar{
+      z-index: 20;
+      padding-top:20px;
+      background-color: rgba(0,0,0, 0) !important;
       .nav-link{
         &.active{
-          color:red
+          color:blue
         }
       }
     }
@@ -50,3 +78,9 @@
     //}
   }
 }
+video{
+  position: fixed;// overlay ghi đề lên thanh header
+  bottom:0;
+  width:100%;
+}
+
