@@ -43,6 +43,7 @@
 }
 .app-container {
   .header-container{
+
     .btn-login {
       border-radius: 5px;
       margin-right: 15px;
@@ -51,6 +52,7 @@
       &:hover{
         color: red;
       }
+      height:40px;
     }
     .btn-signup {
       border-radius: 5px;
@@ -61,6 +63,8 @@
       &:hover{
         background-color: purple;
       }
+      height:40px;
+
     }
 
     .navbar{
@@ -78,9 +82,42 @@
     //}
   }
 }
+.homepage-container {
+  .homepage-content {
+    position: relative;
+    padding: 5%; /* Relative padding for better responsiveness */
+    width: 50%;
+    display: flex; /* Changed to flex for flex-direction */
+    flex-direction: column;
+    gap: 50px; /* Adjusted gap for spacing */
+
+    .title-1 {
+      font-size: 35px; /* Scalable font size */
+      font-weight:600;
+    }
+    .title-2{
+      font-size: 20px;
+    }
+    .title-3{
+      button{
+        border-radius:10px;
+        padding:10px;
+        font-size:15px;
+        background-color:black;
+        color:white;
+        &:hover{
+          background-color: purple;
+        }
+      }
+
+    }
+  }
+}
+
 video{
   position: fixed;// overlay ghi đề lên thanh header
   bottom:0;
   width:100%;
 }
+
 
