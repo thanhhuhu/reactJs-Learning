@@ -8,7 +8,8 @@ import {
     SidebarFooter,
     SidebarContent,
 } from 'react-pro-sidebar';
-
+import {Link} from 'react-router-dom';
+import { GiSoccerBall } from "react-icons/gi";
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
 import { IoLogoReact } from "react-icons/io5";
@@ -47,10 +48,11 @@ const SideBar = (props) => {
                 <SidebarContent>
                     <Menu iconShape="circle">
                         <MenuItem
-                            icon={<FaTachometerAlt />}
+                            icon={<GiSoccerBall />}
                             // suffix={<span className="badge red">New</span>}
                         >
                             Dashboard
+                            <Link to ="/admins"></Link>
                         </MenuItem>
                         {/*<MenuItem icon={<FaGem />}> components </MenuItem>*/}
                     </Menu>
@@ -61,7 +63,9 @@ const SideBar = (props) => {
                             // suffix={<span className="badge yellow">3</span>}
                             // icon={<FaRegLaughWink />}
                         >
-                            <MenuItem> Quản lý User </MenuItem>
+                            <MenuItem> Quản lý User
+                            <Link to="/admins/manage-users"></Link>
+                            </MenuItem>
                             <MenuItem> Quản lý User </MenuItem>
                             <MenuItem> Quản lý User </MenuItem>
                         </SubMenu>
