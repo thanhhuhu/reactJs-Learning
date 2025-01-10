@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import ModalCreateUser from "./ModalCreatorUser";
+import './ManageUser.scss';
+
 
 const ManageUser =(props) =>{
     const [show, setShow] = useState(false);
@@ -18,8 +20,8 @@ const ManageUser =(props) =>{
                     <button> Add new user</button>
                 </div>
                 <div>
-                    <ModalCreateUser></ModalCreateUser>
                 </div>
+                <ModalCreateUser/>
             </div>
     )
 }
