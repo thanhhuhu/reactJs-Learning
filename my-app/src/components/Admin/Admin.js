@@ -3,7 +3,9 @@ import './Admin.scss';
 import { FaBars } from 'react-icons/fa';
 import { useState } from "react";
 import {Outlet} from "react-router-dom";
-import { FcPlus } from "react-icons/fc";
+// import { FcPlus } from "react-icons/fc";
+import {ToastContainer, toast, Bounce} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Admin = (props) => {
     const [collapsed, setCollapsed] = useState(false);
@@ -20,8 +22,21 @@ const Admin = (props) => {
                 <div className="admin-main">
                     <Outlet/>
                 </div>
-
             </div>
+            {/*sử dụng toast để tạo thông báo khi email invalid */}
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Bounce}
+            />
         </div>
     )
 }
