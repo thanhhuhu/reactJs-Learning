@@ -1,41 +1,44 @@
-import {useState} from "react";
 
 const TableUser = (props) =>{
 
-    const [listUser,setListUser] = useState([
-        {}
-    ]);
-
+    const {listUsers} = props;
+    // const listUsers = props.listUsers;
     return (
         <>
             <br/>
             <table className="table table-hover table-bordered">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">id</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colSpan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                {listUsers && listUsers.length > 0 &&
+                listUsers.map((item,index) => {
+                    return (
+                        <tr key={'tableUser+ ${index}'}>
+                            <th scope="row">{item.id}</th>
+                            <td>{item.username}</td>
+                            <td>{item.email}</td>
+                            <td>{item.role}</td>
+                            <td>
+                                <button className={"btn"}>View</button>
+                                <button className={"btn btn-success mx-3"}>Update</button>
+                                <button className={"btn btn-primary"}>Delete</button>
+                            </td>
+                        </tr>
+                    )
+                })
+                }
+                {listUsers && listUsers.length === 0 &&
+                    <tr>
+                        <td colSpan={4}>  Not found data</td>
+                </tr> }
+
                 </tbody>
             </table>
         </>

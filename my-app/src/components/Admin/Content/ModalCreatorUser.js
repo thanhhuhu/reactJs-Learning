@@ -79,6 +79,7 @@ const ModalCreateUser =(props) =>{
         if (data && data.EC === 0){
             toast.success(data.EM)
             handleClose();
+            await props.fetchListUsers();
         }
         // nếu save không thành công sẽ hiện thông báo lỗi
         if (data && data.EC !== 0){
