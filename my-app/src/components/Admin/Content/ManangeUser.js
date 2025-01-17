@@ -7,11 +7,14 @@ import { FcPlus } from "react-icons/fc";
 import TableUser from "./tableUser";
 import {useEffect, useState} from "react";
 import{getAllUsers} from "../../../services/apiService";
+import ModalUpdateUser from "./ModalUpdateUser";
+
+
 const ManageUser =() =>{
     //biến để khi nhấn add thì sẽ sẽ hiện thông tin để add
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
     const [listUsers,setListUsers] = useState([]);
-
+    const [dataUpdate,setDataUpdate] = useState({});
     //componentDidMount
     //kéo api để hiện user vào table
     // useEffect: Đây là một hook trong React, được sử dụng để thực hiện các
@@ -44,6 +47,18 @@ const ManageUser =() =>{
     //     }
     // }
 
+    const [showModalUpdateUser,setShowModalUpdateUser] = useState(false);
+
+    // event onclick của nút update, đầu tiên là mở modal => sau đó là update
+    const handleClickBtnUpdate = (user) =>{
+        setShowModalUpdateUser(true);
+        setDataUpdate(user);
+        console.log(user)
+        // console.log(user);
+    }
+    const resetUpdateUpdate = ()=>{
+        setDataUpdate({});
+    }
     return (
             <div className={"manage-user-container"}>
                 <div className={"title"}>
@@ -56,13 +71,23 @@ const ManageUser =() =>{
                         <FcPlus/> Add new user</button>
                 </div>
                 <div className={"table-users-container"}>
-                      <TableUser listUsers={listUsers}/>
+                      <TableUser
+                          listUsers={listUsers}
+                          handleClickBtnUpdate = {handleClickBtnUpdate}
+                      />
                 </div>
                 <ModalCreateUser
                     show = {showModalCreateUser}
                     setShow = {setShowModalCreateUser}
                     fetchListUsers={fetchListUsers}
                     // testFunction = {testFunction}
+                />
+                <ModalUpdateUser
+                    show = {showModalUpdateUser}
+                    setShow = {setShowModalUpdateUser}
+                    dataUpdate ={dataUpdate}
+                    fetchListUsers={fetchListUsers}
+                    resetUpdateUpdate = {resetUpdateUpdate}
                 />
             </div>
     )
