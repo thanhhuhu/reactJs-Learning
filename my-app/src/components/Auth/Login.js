@@ -1,0 +1,77 @@
+import './Login.scss';
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {postLogin} from "../../services/apiService";
+import {toast} from "react-toastify";
+import Register from "./Register";
+
+const Login = (props) =>{
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const handleLogin = async () => {
+        if (!email || !password) {
+            toast.error("Email and password are required");
+            return;
+        }
+        try {
+            let data = await postLogin(email, password);
+
+            if (data && data.EC === 0) {
+                toast.success(data.EM);
+                navigate('/'); // Navigate to homepage
+            } else {
+                toast.error(data?.EM || "Login failed. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            toast.error("Something went wrong. Please try again later.");
+        }
+    };
+
+    // để chuyển hướng đến homepage
+    return (
+
+        <div className="login-container">
+            <div className="header">
+                <span>Don't have an account yet?</span>
+                <button onClick={() =>{navigate('/register')}}>Sign-up</button>
+            </div>
+            <div className="title col-4 mx-auto">
+                Nguyen Thanh
+            </div>
+            <div className="welcome col-4 mx-auto">
+                Hello, who are you?
+            </div>
+            <div className="content-form col-4 mx-auto">
+                <div className="form-group">
+                    <label htmlFor="">Email</label>
+                    <input
+                        onChange={(event)=>setEmail(event.target.value)}
+                        value={email}
+                        type="email"
+                        className="form-control" id="email"/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="">Password</label>
+                    <input
+                        onChange={(event)=>setPassword(event.target.value)}
+                        value={password}
+                        type="password" className="form-control" id="password"/>
+                </div>
+                <span className={"forgot-password"}>Forgot password?</span>
+                <div>
+                    <button
+                        onClick={()=> handleLogin()}
+                        className={"btn-submit"}>Login</button>
+                </div>
+                <div className = 'text-center'>
+                    <span onClick={() =>{navigate('/')}}>
+                        &#60;  	&#60; Go to Homepage</span>
+                </div>
+            </div>
+        </div>
+    )
+}
+export default Login;

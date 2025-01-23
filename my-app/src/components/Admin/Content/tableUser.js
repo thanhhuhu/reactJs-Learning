@@ -1,4 +1,3 @@
-
 const TableUser = (props) =>{
 
     const {listUsers} = props;
@@ -18,7 +17,7 @@ const TableUser = (props) =>{
                 </thead>
                 <tbody>
                 {listUsers && listUsers.length > 0 &&
-                listUsers.map((item,index) => {
+                listUsers.map((item) => {
                     return (
                         <tr key={'tableUser+ ${index}'}>
                             <th scope="row">{item.id}</th>
@@ -26,10 +25,12 @@ const TableUser = (props) =>{
                             <td>{item.email}</td>
                             <td>{item.role}</td>
                             <td>
-                                <button className={"btn"}>View</button>
+                                <button className={"btn"}
+                                        onClick={() =>props.handleClickBtnView(item)}>View</button>
                                 <button className={"btn btn-success mx-3"}
                                         onClick={() =>props.handleClickBtnUpdate(item)}>Update</button>
-                                <button className={"btn btn-primary"}>Delete</button>
+                                <button className={"btn btn-primary"}
+                                        onClick = {() => props.handleClickBtnDelete(item)}>Delete</button>
                             </td>
                         </tr>
                     )
@@ -37,7 +38,7 @@ const TableUser = (props) =>{
                 }
                 {listUsers && listUsers.length === 0 &&
                     <tr>
-                        <td colSpan={4}>  Not found data</td>
+                        <td colSpan={4}>Not found data</td>
                 </tr> }
 
                 </tbody>

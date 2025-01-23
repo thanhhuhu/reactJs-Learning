@@ -1,20 +1,19 @@
-// import { useState } from 'react';
-// import Button from 'react-bootstrap/Button';
-// import Modal from 'react-bootstrap/Modal';
-import ModalCreateUser from "./ModalCreatorUser";
+import ModalCreateUser from "./ModalCreateUser";
 import './ManageUser.scss';
 import { FcPlus } from "react-icons/fc";
 import TableUser from "./tableUser";
 import {useEffect, useState} from "react";
 import{getAllUsers} from "../../../services/apiService";
 import ModalUpdateUser from "./ModalUpdateUser";
-
-
+import ModalViewUser from "./ModalViewUser";
+import ModalDeleteUser from "./ModalDeleteUser";
+// import TableUserPaginate from "./TableUserPaginate";
 const ManageUser =() =>{
     //biến để khi nhấn add thì sẽ sẽ hiện thông tin để add
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
     const [listUsers,setListUsers] = useState([]);
     const [dataUpdate,setDataUpdate] = useState({});
+    const [showModalViewUser, setShowModalViewUser] = useState(false);
     //componentDidMount
     //kéo api để hiện user vào table
     // useEffect: Đây là một hook trong React, được sử dụng để thực hiện các
@@ -48,13 +47,21 @@ const ManageUser =() =>{
     // }
 
     const [showModalUpdateUser,setShowModalUpdateUser] = useState(false);
-
+    const [showModalDeleteUser,setShowModalDeleteUser] = useState(false);
+    const [dataDelete,setDataDelete] = useState({});
     // event onclick của nút update, đầu tiên là mở modal => sau đó là update
     const handleClickBtnUpdate = (user) =>{
         setShowModalUpdateUser(true);
         setDataUpdate(user);
         console.log(user)
-        // console.log(user);
+    }
+    const handleClickBtnDelete = (user) =>{
+        setShowModalDeleteUser(true);
+        setDataDelete(user)
+    }
+    const handleClickBtnView = (user) =>{
+        setShowModalViewUser(true);
+        setDataUpdate(user);
     }
     const resetUpdateUpdate = ()=>{
         setDataUpdate({});
@@ -74,7 +81,15 @@ const ManageUser =() =>{
                       <TableUser
                           listUsers={listUsers}
                           handleClickBtnUpdate = {handleClickBtnUpdate}
+                          handleClickBtnView = {handleClickBtnView}
+                          handleClickBtnDelete = {handleClickBtnDelete}
                       />
+                    {/*<TableUserPaginate*/}
+                    {/*    listUsers={listUsers}*/}
+                    {/*    handleClickBtnUpdate = {handleClickBtnUpdate}*/}
+                    {/*    handleClickBtnView = {handleClickBtnView}*/}
+                    {/*    handleClickBtnDelete = {handleClickBtnDelete}*/}
+                    {/*/>*/}
                 </div>
                 <ModalCreateUser
                     show = {showModalCreateUser}
@@ -89,6 +104,20 @@ const ManageUser =() =>{
                     fetchListUsers={fetchListUsers}
                     resetUpdateUpdate = {resetUpdateUpdate}
                 />
+                <ModalViewUser
+                    show={showModalViewUser}
+                    setShow={setShowModalViewUser}
+                    dataUpdate={dataUpdate} // Pass the user data here
+                />
+                <ModalDeleteUser
+                    show = {showModalDeleteUser}
+                    setShow={setShowModalDeleteUser}
+                    dataDelete={dataDelete}
+                    fetchListUsers={fetchListUsers}
+                />
+
+
+
             </div>
     )
 }

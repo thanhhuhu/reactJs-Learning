@@ -1,34 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {
     BrowserRouter,
-    Routes, Route, RouterProvider,
+    Routes, Route,
 } from "react-router-dom";
+import App from './App';
 import User from './components/User/User';
 import Admin from './components/Admin/Admin';
 import HomePage from './components/Home/HomePage';
 import ManageUser from './components/Admin/Content/ManangeUser';
 import DashBoard from './components/Admin/Content/DashBoard';
-
+import Login from "./components/Auth/Login";
+import Layout from './Layout';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
     <BrowserRouter>
-        <Routes>
-            {/*đường dẫn đến các trang khác */}
-            {/*Để bên trong Route để thể hiện 3 đường link này có liên quan đến nhau */}
-            <Route path ="/" element={<App/>} >
-                <Route index element= {<HomePage />} />
-                <Route path ="users" element={<User />} />
-            </Route>
-            <Route path ="/admins" element={<Admin />} >
-                <Route index element ={<DashBoard/>} />
-                <Route path ="manage-users" element={<ManageUser />} />
-            </Route>
-        </Routes>
+        <Layout/>
     </BrowserRouter>
   // </React.StrictMode>
 );
