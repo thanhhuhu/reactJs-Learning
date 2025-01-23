@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+// import store from './store';
 import {
     BrowserRouter,
     Routes, Route,
@@ -15,7 +16,9 @@ import DashBoard from './components/Admin/Content/DashBoard';
 import Login from "./components/Auth/Login";
 import Layout from './Layout';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
+
   // <React.StrictMode>
     <BrowserRouter>
         <Layout/>

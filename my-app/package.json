@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ngrx/store-devtools": "^19.0.0",
     "axios": "1.7.4",
     "bootstrap": "5.3.3",
     "cra-template": "1.2.0",

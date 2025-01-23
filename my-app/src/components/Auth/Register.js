@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { postRegister } from '../../services/apiService';
 import { toast } from 'react-toastify';
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 
 const Register = (props) => {
     const [email, setEmail] = useState("");
