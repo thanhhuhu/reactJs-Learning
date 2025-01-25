@@ -1,5 +1,8 @@
 // cấu hình động cho axios này
 import axios from "axios";
+// import Nprogress from "nprogress";
+
+
 const instance = axios.create({
     baseURL: 'http://localhost:8081/',
     // kết hợp với url bên apiService
@@ -16,6 +19,7 @@ instance.interceptors.request.use(function (config) {
 
 // Add a response interceptor
 instance.interceptors.response.use(function (response) {
+    // NProgress.done();
     // console.log("Interceptors", response);
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data

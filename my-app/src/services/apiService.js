@@ -41,9 +41,11 @@ const deleteUser = (userId) =>{
 //     return axios.get('api/v1/participant?page = $\{page}${}limit}')
 // }
 const postLogin = (email,password) =>{
-    return axios.post('api/v1/login', {email, password})
+    // pending delay login
+    return axios.post('api/v1/login', {email, password,delay:2000})
 }
 const postRegister = (email,username,password) =>{
     return axios.post('api/v1/register', {email, username, password})
 }
+
 export {postCreateNewUser,getAllUsers, putUpdateUser, viewUser, deleteUser, postLogin, postRegister}

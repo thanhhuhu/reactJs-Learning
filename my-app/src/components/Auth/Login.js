@@ -1,28 +1,39 @@
 import './Login.scss';
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {postLogin} from "../../services/apiService";
+import {postLogin, postRegister} from "../../services/apiService";
 import {toast} from "react-toastify";
-import Register from "./Register";
+//hook
+import {useDispatch} from "react-redux";
+//hàm userAction
+import {doLogin} from "../../redux/action/userAction";
+import { ImSpinner9 } from "react-icons/im";
 
 const Login = (props) =>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleLogin = async () => {
         if (!email || !password) {
             toast.error("Email and password are required");
             return;
         }
+        setIsLoading(true);
         try {
             let data = await postLogin(email, password);
 
             if (data && data.EC === 0) {
+                // khai bao dispatch + action => khai bao trong react-component
+                dispatch(doLogin(data));
                 toast.success(data.EM);
+                setIsLoading(false);
                 navigate('/'); // Navigate to homepage
-            } else {
+            } else if ( data && +data.EC !== 0 ) {
                 toast.error(data?.EM || "Login failed. Please try again.");
+                setIsLoading(false);
             }
         } catch (error) {
             console.error("Error during login:", error);
@@ -64,7 +75,13 @@ const Login = (props) =>{
                 <div>
                     <button
                         onClick={()=> handleLogin()}
-                        className={"btn-submit"}>Login</button>
+                        className={"btn-submit"}
+                        disabled = {isLoading}>
+                        {isLoading  === true &&
+                        <ImSpinner9 className="loader-icon"   />}
+
+                        Login
+                    </button>
                 </div>
                 <div className = 'text-center'>
                     <span onClick={() =>{navigate('/')}}>
