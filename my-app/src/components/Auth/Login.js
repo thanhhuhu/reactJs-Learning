@@ -16,6 +16,11 @@ const Login = (props) =>{
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
 
+    const handleKeyDown = (event) =>{
+        if (event && event.key === 'Enter'){
+                handleLogin();
+        }
+    }
     const handleLogin = async () => {
         if (!email || !password) {
             toast.error("Email and password are required");
@@ -69,7 +74,9 @@ const Login = (props) =>{
                     <input
                         onChange={(event)=>setPassword(event.target.value)}
                         value={password}
-                        type="password" className="form-control" id="password"/>
+                        type="password" className="form-control" id="password"
+                        onKeyDown={(event) => handleKeyDown (event)}
+                    />
                 </div>
                 <span className={"forgot-password"}>Forgot password?</span>
                 <div>
@@ -79,7 +86,6 @@ const Login = (props) =>{
                         disabled = {isLoading}>
                         {isLoading  === true &&
                         <ImSpinner9 className="loader-icon"   />}
-
                         Login
                     </button>
                 </div>

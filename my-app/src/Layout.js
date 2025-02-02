@@ -13,6 +13,7 @@ import React from "react";
 import {Bounce, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Register from "./components/Auth/Register";
+import ListQuiz from "./components/User/ListQuiz";
 
 const Layout = (props) => {
     return (
@@ -22,7 +23,7 @@ const Layout = (props) => {
                 {/*Để bên trong Route để thể hiện 3 đường link này có liên quan đến nhau */}
                 <Route path ="/" element={<App/>} >
                     <Route index element= {<HomePage />} />
-                    <Route path ="users" element={<User />} />
+                    <Route path ="users" element={<ListQuiz />} />
                 </Route>
                 <Route path ="/admins" element={<Admin />} >
                     <Route index element ={<DashBoard/>} />

@@ -42,10 +42,16 @@ const deleteUser = (userId) =>{
 // }
 const postLogin = (email,password) =>{
     // pending delay login
-    return axios.post('api/v1/login', {email, password,delay:2000})
+    return axios.post('/api/v1/login', {email, password,delay:2000})
 }
 const postRegister = (email,username,password) =>{
-    return axios.post('api/v1/register', {email, username, password})
+    return axios.post('/api/v1/register', {email, username, password})
 }
-
-export {postCreateNewUser,getAllUsers, putUpdateUser, viewUser, deleteUser, postLogin, postRegister}
+const getQuizByUser = () =>{
+    return axios.get('/api/v1/quiz/1')
+}
+const logout = (email, refresh_token) =>{
+    return axios.post('/api/v1/logout', {email, refresh_token})
+}
+export {postCreateNewUser
+    ,getAllUsers, putUpdateUser, viewUser, deleteUser, postLogin, postRegister, getQuizByUser,logout}

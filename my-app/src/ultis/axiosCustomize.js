@@ -1,7 +1,6 @@
 // cấu hình động cho axios này
 import axios from "axios";
-// import Nprogress from "nprogress";
-
+import {store} from "../redux/store";
 
 const instance = axios.create({
     baseURL: 'http://localhost:8081/',
@@ -11,6 +10,10 @@ const instance = axios.create({
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
     // Do something before request is sent
+    const access_token = store?.getState()?.user?.account?.access_token;
+    config.headers["Authorization"] ="Bearer " +access_token;
+    // Nprogress.start();
+    console.log('check store:', store.getState());
     return config;
 }, function (error) {
     // Do something with request error
@@ -28,7 +31,7 @@ instance.interceptors.response.use(function (response) {
 }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    console.log(error.response);
+    // console.log(error.response);
     return error && error.response && error.response.data ? error.response.data : Promise.reject(error)
 });
 export default instance;
