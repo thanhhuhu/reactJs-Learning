@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {getQuizByUser} from "../../services/apiService";
 import './ListQuiz.scss'
+
 const ListQuiz = (props) => {
     const [arrQuiz, setArrQuiz] = useState([])
 
@@ -12,11 +13,9 @@ const ListQuiz = (props) => {
     const getQuizData = async() =>{
         const res = await getQuizByUser();
         console.log(res);
-        // if ( res && res.EC === 0 ){
-        //     setArrQuiz(res.DT)
-        // } else {
-        //     console.error("Error fetching quizzes:", res?.EM || "Unknown error")
-        // }
+        if ( res && res.EC === 0 ){
+            setArrQuiz(res.DT)
+        }
     }
     return (
 
@@ -36,7 +35,11 @@ const ListQuiz = (props) => {
                 )
             })
             }
-
+            {arrQuiz && arrQuiz.length === 0 &&
+                <div>
+                        You dont have any quiz...
+                </div>
+            }
         </div>
 
     )
